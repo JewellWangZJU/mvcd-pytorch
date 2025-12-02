@@ -20,12 +20,12 @@
 ###############
 
 ## Please change the directories below to your own
-export user="skrillex"
-export project_dir="mask-cond-video-diffusion"
-export code_folder="/home/${user}/my_projects/${project_dir}" # code folders
-export logs_folder="/scratch/${user}/Output1/Extra/logs" # where to output logs
-export data_folder="/home/${user}/scratch/datasets"
-export exp_folder=/scratch/${user}/checkpoints
+export user="jewellwang"
+export project_dir="mcvd-pytorch"
+export code_folder="/home/${user}/myproject_cddpm/${project_dir}" # code folders
+export logs_folder="${code_folder}/Output1/Extra/logs" # where to output logs
+export data_folder="${code_folder}/data"
+export exp_folder=${code_folder}/checkpoints_train
 
 export dir="${code_folder}"
 cd ${dir}

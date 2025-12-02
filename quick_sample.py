@@ -105,7 +105,7 @@ if __name__ == '__main__':
     conditional = config.data.num_frames_cond > 0
     cond = None
     if conditional:
-        X, cond = conditioning_fn(config, X)
+        X, cond, _ = conditioning_fn(config, X)
 
     init_samples = torch.randn(len(X), config.data.channels*config.data.num_frames,
                                config.data.image_size, config.data.image_size,
@@ -118,12 +118,12 @@ if __name__ == '__main__':
                                subsample_steps=getattr(config.sampling, 'subsample', None),
                                verbose=True)
 
-    sample = all_samples[-1].reshape(all_samples[-1].shape[0], config.data.channels,
+    sample = all_samples[-1].reshape(-1, config.data.channels,
                                      config.data.image_size, config.data.image_size)
 
     sample = inverse_data_transform(config, sample)
 
-    image_grid = make_grid(sample, np.sqrt(config.training.batch_size))
+    image_grid = make_grid(sample, int(np.sqrt(config.training.batch_size)))
     step = 0
     save_image(image_grid,
                os.path.join(save_path, 'image_grid_{}.png'.format(step)))
